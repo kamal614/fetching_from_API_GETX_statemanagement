@@ -20,38 +20,38 @@ class Home extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         } else {
           return ListView.builder(
-            itemCount: mobileController.productList.length,
+            itemCount: mobileController.productList[0].products.length,
             itemBuilder: (context, index) {
-              return Center(
-                  child: Container(
-                // width: 300,
-                // height: MediaQuery.of(context).size.height * 0.2,
-                padding: const EdgeInsets.all(10.0),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
+              return SingleChildScrollView(
+                child: Center(
+                    child: Container(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    color: AppColor.mainColor,
+                    elevation: 10,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        ListTile(
+                          leading: Image.network(mobileController
+                              .productList[0].products[index].images.first),
+                          title: Text(
+                              mobileController
+                                  .productList[0].products[index].title,
+                              style: const TextStyle(fontSize: 30.0)),
+                          subtitle: Text(
+                              mobileController
+                                  .productList[0].products[index].description,
+                              style: const TextStyle(fontSize: 18.0)),
+                        ),
+                      ],
+                    ),
                   ),
-                  color: AppColor.mainColor,
-                  elevation: 10,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      ListTile(
-                        leading: Image.network(mobileController
-                            .productList[index].products[index].images.first),
-                        title: Text(
-                            mobileController
-                                .productList[index].products[index].title,
-                            style: const TextStyle(fontSize: 30.0)),
-                        subtitle: Text(
-                            mobileController
-                                .productList[index].products[index].description,
-                            style: const TextStyle(fontSize: 18.0)),
-                      ),
-                    ],
-                  ),
-                ),
-              ));
+                )),
+              );
             },
           );
         }

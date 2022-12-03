@@ -5,7 +5,7 @@ import '../../api_module/api_service.dart';
 
 class MobileController extends GetxController {
   RxBool isLoading = true.obs;
-  RxList<MobileJson> productList = <MobileJson>[].obs;
+  List<MobileJson> productList = <MobileJson>[].obs;
 
   @override
   void onInit() {
@@ -18,7 +18,7 @@ class MobileController extends GetxController {
       isLoading(true);
       MobileJson? mobileProduct = await ApiService.fetchApi();
       if (mobileProduct != null) {
-        productList.assign(mobileProduct);
+        productList.add(mobileProduct);
       }
     } finally {
       isLoading(false);
